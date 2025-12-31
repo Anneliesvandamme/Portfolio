@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annelies Van Damme</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="topbar">
+      <div>
+      <p><a href="index.html">Annelies Van Damme</a></p>
+      </div>
+    </div>
+    
+    <div class="contact">
+      <div><a onclick="Showbio()">bio</a></div>
+      <div><a href="cv.html">cv</a></div>
+      <div><a href="https://www.instagram.com/annelies.vd" target="_blank">instagram</a></div>
+      <div><a href="mailto:annelies.vandamme@hotmail.be" target="_blank">annelies.vandamme@hotmail.be</a></div>
+    </div>
+
+    <div id="bio-container">
+      <div id="bio">
+        <div><a onclick="Showbio()">x</a></div>
+        <div>
+          <video autoplay muted loop>
+            <source src="video/MOV00000.mp4" type="video/mp4"> 
+          </video>
+          </div>
+        <div><p>Annelies Van Damme (° 1998) is a contemporary artist whose work explores themes of
+power, gender and sexuality, and the complexities of war and crime. Through bold painting
+and provocative imagery, she confronts societal norms often teleporting her own naked body
+into found footage of porn websites or other violent resources. She aims to investigate and
+compare a fake sexualised world and a real violent one, ultimately seeking to show how the
+two are more often than not one and the same. Annelies shamelessly rips open wounds her
+audience prefers to ignore. In doing so she manages to evoke raw emotions and provoke
+thought, inviting viewers to reflect on their own perception of these power-dynamics and their
+own complicity in this violence. Her paintings are monumental and bright, dripping in paint
+and sometimes torn and damaged with nails. When standing in front of one of Annelies’
+paintings it is hard to look away. Forcing you to be part of the violent dynamic that is in front
+of you and make a choice: to keep watching or to walk away.</p></div>
+      </div>
+    </div>
+
+  <main id="grid" class="grid"></main>
+
+    <div id="cv">
+      <ul>
+        <li>1998, Brussels Belgium</li>
+        <li>Lives and works in Ghent, Belgium.</li>
+      </ul>
+
+      <ul>
+      <strong>Solo exhibitions</strong>
+        <li>2025, Perros y huesos, La Concordia, Merida (MEX)</li>
+        <li>2024, Descent, Verduyn Gallery, Moregem (BE)</li>
+      </ul>
+
+      <ul>
+        <strong>Group exhibitions</strong>
+        <li>2025, Input/Output 2025, Cultuurcentrum Brugge, Brugge (BE)</li>
+        <li>2025, INTERFACE: Perspectives de la Matière, Lille Grand Palais, Lille (FR)</li>
+        <li>2024, Biënnale van de Schilderkunst, Museum van Deinze en de Leiestreek, Deinze (BE)</li>
+        <li>2023, Input/Output 2023, Cultuurcentrum Brugge, Brugge (BE)</li>
+        <li>2023, BELGIAN ART & DESIGN FAIR: Young Talent Booth, Arsenaal, Gentbrugge (BE)</li>
+        <li>2023, BRUTHAUSGALLERY MEETS BRUTHAUSCLASSICS, Bruthaus gallery, Waregem (BE)</li>
+        <li>2023, Atelier In Beeld, Amuseevous Gent, Ghent (BE)</li>
+        <li>2023, AIRBIEKORF, Cultuurcentrum Brugge, Brugge (BE)</li>
+        <li>2022, Het Oor, Bruthaus gallery, Waregem (BE)</li>
+        <li>2021, Passie & Obsessie , STeM Stedelijk Museum, Sint-Niklaas (BE)</li>
+        <li>2021, Door Het Doek Het Schilderij, Roger Raveel Museum, Deinze (BE)</li>
+      </ul>
+
+      <ul>
+        <strong>Stages</strong>
+        <li>2025, Escuela De Muralismo De Oaxacac</li>
+        <br>
+        <strong>Openbare Collecties</strong>
+        <li>Dog Kennel, 2024, Museum Van Deinze en de Leiestreek</li>
+      </ul>
+    </div>
+</body>
+<script>
+  function Showbio() {
+  document.getElementById("bio-container").classList.toggle("show2");
+}
+</script>
+</html>
+
