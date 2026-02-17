@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <title>Annelies Van Damme</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="age-gate" class="age-gate" role="dialog" aria-modal="true">
+    <div class="gate-box">
+      <h1>Content Advisory</h1>
+      <img src="images/gifs/logo.webp">
+      <p>
+        This portfolio contains explicit themes and documentation related to sexual violence, including rape and abuse.
+        Viewer discretion is advised. By entering, you confirm you are of legal age in your jurisdiction and consent to view sensitive material.
+      </p>
+      <label>
+        <input type="checkbox" id="age-check"> I am of legal age and wish to proceed.
+      </label>
+      <div>
+        <button id="enter-btn">Enter</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="topbar">
+      <div>
+      <p><a href="index.html">Annelies Van Damme</a></p>
+      </div>
+      <div id="searchbutton">
+      <input type="search" id="search" placeholder="Search…" autocomplete=“off”>
+      <button id="filter" onclick="Showlist()">All
+      </button>
+      </div>
+    </div>
+    
+    <div class="contact">
+      <div><a onclick="Showbio()">bio</a></div>
+      <div><a href="cv.html">cv</a></div>
+      <div><a href="https://www.instagram.com/annelies.vd" target="_blank">instagram</a></div>
+      <div><a href="mailto:annelies.vandamme@hotmail.be" target="_blank">annelies.vandamme@hotmail.be</a></div>
+    </div>
+
+    <div id="bio-container">
+      <div id="bio">
+        <div><a onclick="Showbio()">x</a></div>
+        <div>
+          <video autoplay muted loop>
+            <source src="video/MOV00000.mp4" type="video/mp4"> 
+          </video>
+          </div>
+        <div><p>Annelies Van Damme (° 1998) is a contemporary artist whose work explores themes of
+power, gender and sexuality, and the complexities of war and crime. Through bold painting
+and provocative imagery, she confronts societal norms often teleporting her own naked body
+into found footage of porn websites or other violent resources. She aims to investigate and
+compare a fake sexualised world and a real violent one, ultimately seeking to show how the
+two are more often than not one and the same. Annelies shamelessly rips open wounds her
+audience prefers to ignore. In doing so she manages to evoke raw emotions and provoke
+thought, inviting viewers to reflect on their own perception of these power-dynamics and their
+own complicity in this violence. Her paintings are monumental and bright, dripping in paint
+and sometimes torn and damaged with nails. When standing in front of one of Annelies’
+paintings it is hard to look away. Forcing you to be part of the violent dynamic that is in front
+of you and make a choice: to keep watching or to walk away.</p></div>
+      </div>
+    </div>
+
+  <main id="grid" class="grid"></main>
+
+  <div id="worklist"> 
+    <br>
+    <p><a href="images/works/full/A crucifixion; Deepthroat Choke I.jpg" target="_blank">A crucifixion; Deepthroat Choke I</a></p>
+    <p><a href="images/works/full/A crucifixion; Deepthroat Choke II.jpg" target="_blank">A crucifixion; Deepthroat Choke II</a></p>
+    <p><a href="images/works/full/A crucifixion; Deepthroat Choke III.jpg" target="_blank">A crucifixion; Deepthroat Choke III</a></p>
+    <p><a href="images/works/full/A crucifixion; Deepthroat Choke Triptych.jpg" target="_blank">A crucifixion; Deepthroat Choke Triptych</a></p>
+    <p><a href="images/works/full/Baren III.jpg" target="_blank">Baren III</a></p>
+    <p><a href="images/works/full/Cage II.jpg" target="_blank">Cage II</a></p>
+    <p><a href="images/works/full/Deepthroat Choke I.JPG" target="_blank">Deepthroat Choke I</a></p>
+    <p><a href="images/works/full/Deepthroat Choke II.JPG" target="_blank">Deepthroat Choke II</a></p>
+    <p><a href="images/works/full/Deepthroat Choke III.JPG" target="_blank">Deepthroat Choke III</a></p>
+    <p><a href="images/works/full/Deepthroat Choke in a Cornfield.jpg" target="_blank">Deepthroat Choke in a Cornfield</a></p>
+    <p><a href="images/works/full/Dogs Fighting.jpg" target="_blank">Dogs fighting</a></p>
+    <p><a href="images/works/full/Dying Horse.jpg" target="_blank">Dying Horse</a></p>
+    <p><a href="images/works/full/Dying I.png" target="_blank">Dying I</a></p>
+    <p><a href="images/works/full/Execution by Drowning ( Cage I ).jpg" target="_blank">Execution by Drowning ( Cage I )</a></p>
+    <p><a href="images/works/full/Guillotine.jpg" target="_blank">Guillotine</a></p>
+    <p><a href="images/works/full/Horses Fighting.jpg" target="_blank">Horses Fighting</a></p>
+    <p><a href="images/works/full/Slaughtering in a Cornfiel II.jpg" target="_blank">Slaughtering in a Cornfiel II</a></p>
+    <p><a href="images/works/full/Woman Hanged by Crane.png" target="_blank">Woman Hanged by Crane</a></p>
+    <!-- <p><a href="" target="_blank"></a></p> -->
+     <!-- Hierin moet je eigen werk aanvullen; kijk goed naar hoe de link "Images/works/full/" -->
+  </div>
+
+  <div id="popup-container">
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
+
