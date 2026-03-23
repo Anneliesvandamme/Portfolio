@@ -371,7 +371,16 @@ input::placeholder{
   min-width: 10rem;
 }
 
+  .img-wrapper {
+  height: 30vw;
+}
 
+}
+
+@media (max-width: 525px) {
+  .img-wrapper {
+  height: 60vw;
+}
 }
 
 @media (max-width: 444px) {
