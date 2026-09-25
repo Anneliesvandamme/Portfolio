@@ -132,8 +132,8 @@ function showLightbox(lowSrc, fullSrc, captionText, originalSrc = null) {
 
   const contentnotice = document.createElement("em");
   contentnotice.setAttribute('style', 'white-space: pre;');
-  contentnotice.textContent = "CONTENT NOTICE: REMOVED MATERIAL \n";
-  contentnotice.textContent += "This image has been removed due to sensitive material";
+  contentnotice.textContent = "KENNISGEVING OVER DE INHOUD: VERWIJDERD MATERIAAL \n";
+  contentnotice.textContent += "Deze afbeelding is verwijderd vanwege gevoelige inhoud";
 
   overlay.appendChild(img);
   overlay.appendChild(caption);
