@@ -878,13 +878,25 @@ input::placeholder{
   color: red;
 }
 
-#enter-btn {
+#onderzoek-enter-btn {
+  display: inline-block;
+  position: relative;
+  z-index: 3001;
+
   background: white;
   color: blue;
   border: none;
   padding: 0.5rem 1.5rem;
+
+  font-family: Arial, sans-serif;
+  font-size: 16px;
   font-weight: bold;
+
   cursor: pointer;
+}
+
+#onderzoek-enter-btn:hover {
+  text-decoration: underline;
 }
 
 #enter-btn:hover {
