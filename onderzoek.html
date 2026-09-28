@@ -294,26 +294,88 @@ dynamiek die zich voor je afspeelt en een keuze te maken: blijven kijken of wegl
   </main>
 
   <script>
-    function Showbio() {
-      document.getElementById("bio-container").classList.toggle("show2");
-    }
 
-    function Showlist() {
-      document.getElementById("worklist").classList.toggle("show");
-    }
-  </script>
-    <script>
   function Showbio() {
     document.getElementById("bio-container").classList.toggle("show2");
   }
 
+
   function Showlist() {
-    document.getElementById("worklist").classList.toggle("show");
+    const worklist = document.getElementById("worklist");
+
+    if (worklist) {
+      worklist.classList.toggle("show");
+    }
   }
+
+
+  /* --------------------------------
+     EERSTE ONDERZOEK POPUP
+  -------------------------------- */
 
   function closeOnderzoekPopup() {
     document.getElementById("onderzoek-popup").style.display = "none";
   }
+
+
+  /* --------------------------------
+     POPUPS TIJDENS HET SCROLLEN
+  -------------------------------- */
+
+  const scrollPopupImages = [
+    "images/onderzoek/onderzoek1.jpg",
+    "images/onderzoek/onderzoek5.jpg",
+    "images/onderzoek/onderzoek10.jpg",
+    "images/onderzoek/onderzoek18.gif",
+    "images/onderzoek/onderzoek23.jpg"
+  ];
+
+  let scrollPopupNumber = 0;
+  let scrollPopupOpen = false;
+  let nextPopupScroll = 600;
+
+
+  function showScrollPopup() {
+
+    if (scrollPopupNumber >= scrollPopupImages.length) {
+      return;
+    }
+
+    const popup = document.getElementById("scroll-popup");
+    const image = document.getElementById("scroll-popup-image");
+
+    image.src = scrollPopupImages[scrollPopupNumber];
+
+    popup.style.display = "flex";
+
+    scrollPopupOpen = true;
+  }
+
+
+  function closeScrollPopup() {
+
+    document.getElementById("scroll-popup").style.display = "none";
+
+    scrollPopupOpen = false;
+
+    scrollPopupNumber++;
+
+    nextPopupScroll = window.scrollY + 600;
+  }
+
+
+  window.addEventListener("scroll", function() {
+
+    if (scrollPopupOpen) {
+      return;
+    }
+
+    if (window.scrollY >= nextPopupScroll) {
+      showScrollPopup();
+    }
+
+  });
+
 </script>
   </body>
 </html>
