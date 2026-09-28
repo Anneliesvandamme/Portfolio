@@ -406,3 +406,14 @@ input::placeholder{
     display: flex;
   }
 }
+#onderzoek-grid .img-wrapper {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+}
+
+#onderzoek-grid .img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
