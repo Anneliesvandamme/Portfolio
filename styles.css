@@ -525,12 +525,5 @@ input::placeholder{
   #onderzoek-popup-box p {
     font-size: 13px;
   }
-}
-#onderzoek-logo {
-  display: block;
-  width: 150px;
-  max-width: 60%;
-  height: auto;
-  margin: 0 auto 1rem auto;
-}
+
 
