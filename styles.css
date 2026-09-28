@@ -455,3 +455,75 @@ input::placeholder{
     font-size: 13px;
   }
 }
+
+#onderzoek-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2500;
+}
+
+#onderzoek-popup-box {
+  width: 40vw;
+  max-width: 600px;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  background: red;
+  border: 5px solid greenyellow;
+
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+#onderzoek-popup-box h1 {
+  margin: 0 0 1rem 0;
+  padding: 0.5rem;
+
+  background: yellow;
+  color: red;
+
+  font-size: 1.5rem;
+}
+
+#onderzoek-popup-box p {
+  margin: 0 0 1.5rem 0;
+  padding: 0.5rem;
+
+  background: greenyellow;
+  color: red;
+}
+
+#enter-btn {
+  background: white;
+  color: blue;
+  border: none;
+  padding: 0.5rem 1.5rem;
+
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#enter-btn:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  #onderzoek-popup-box {
+    width: 70vw;
+    padding: 1.5rem;
+  }
+
+  #onderzoek-popup-box h1 {
+    font-size: 1.2rem;
+  }
+
+  #onderzoek-popup-box p {
+    font-size: 13px;
+  }
+}
+
