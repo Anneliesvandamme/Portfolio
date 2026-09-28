@@ -526,5 +526,10 @@ input::placeholder{
     font-size: 13px;
   }
   }
+#onderzoek-popup-box {
+  background: red;
+  border: 5px solid greenyellow;
+  ...
+}
 
 
