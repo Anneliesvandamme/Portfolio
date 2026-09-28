@@ -10,8 +10,6 @@
 
 <body>
 
-<input type="checkbox" id="onderzoek-popup-toggle">
-
 <div id="onderzoek-popup">
 
   <div id="onderzoek-popup-box">
@@ -37,10 +35,9 @@
       Huerdo. Deze pagina brengt beelden samen uit dit traject.
     </p>
 
-   <button id="enter-btn" type="button" onclick="closeOnderzoekPopup()">
+   <button id="onderzoek-enter-btn" type="button">
   Enter
 </button>
-
   </div>
 
 </div>
@@ -293,9 +290,16 @@ dynamiek die zich voor je afspeelt en een keuze te maken: blijven kijken of wegl
   </main>
   
 <script>
-function closeOnderzoekPopup() {
-  document.getElementById("onderzoek-popup").style.display = "none";
-}
+document.addEventListener("DOMContentLoaded", function () {
+
+  const popup = document.getElementById("onderzoek-popup");
+  const enterButton = document.getElementById("onderzoek-enter-btn");
+
+  enterButton.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+});
 
 function Showbio() {
   document.getElementById("bio-container").classList.toggle("show2");
