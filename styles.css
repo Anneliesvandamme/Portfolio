@@ -486,3 +486,10 @@ input::placeholder{
     font-size: 13px;
   }
 }
+#onderzoek-logo {
+  display: block;
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+}
