@@ -1,19 +1,108 @@
 <!DOCTYPE html>
 
-<html lang="nl"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="icon" type="image/x-icon" href="/images/favicon.ico"> <title>Onderzoek — Annelies Van Damme</title> <link rel="stylesheet" href="styles.css"> </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onderzoek — Annelies Van Damme</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
 <body>
 
-<div class="topbar"> <div> <p><a href="index.html">Annelies Van Damme</a></p> </div> </div>
+  <div class="topbar">
+    <div>
+      <p><a href="index.html">Annelies Van Damme</a></p>
+    </div>
 
-<div class="contact"> <div><a href="index.html">home</a></div> <div><a href="cv.html">cv</a></div> <div><a href="onderzoek.html">onderzoek</a></div> <div><a href="https://www.instagram.com/annelies.vd" target="_blank">instagram</a></div> <div><a href="mailto:annelies.vandamme@hotmail.be">annelies.vandamme@hotmail.be</a></div> </div>
+```
+<div id="searchbutton">
+  <input
+    type="search"
+    id="search"
+    placeholder="Search…"
+    autocomplete="off"
+    onclick="window.location.href='index.html'"
+  >
+  <button id="filter" onclick="Showlist()">All</button>
+</div>
+```
 
-<main> <h1>Onderzoek</h1>
+  </div>
 
-<p>
-  test
-</p>
+  <div class="contact">
+    <div><a onclick="Showbio()">bio</a></div>
+    <div><a href="cv.html">cv</a></div>
+    <div><a href="onderzoek.html">onderzoek</a></div>
+    <div><a href="https://www.instagram.com/annelies.vd" target="_blank">instagram</a></div>
+    <div>
+      <a href="mailto:annelies.vandamme@hotmail.be" id="mail">
+        annelies.vandamme@hotmail.be
+      </a>
+    </div>
+  </div>
 
-</main>
+  <div id="bio-container">
+    <div id="bio">
 
-</body> </html>
+```
+  <div>
+    <a onclick="Showbio()">x</a>
+  </div>
+
+  <div>
+    <video autoplay muted loop>
+      <source src="video/MOV00000.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div>
+    <p>
+      Annelies Van Damme (° 1998) is een hedendaags kunstenaar wier werk
+      thema’s als macht en seksualiteit, en de complexiteit van oorlog en
+      misdaad verkent. Door middel van gedurfde schilderkunst en
+      provocerende beelden daagt ze maatschappelijke normen uit.
+    </p>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ONDERZOEK -->
+
+  <main id="grid" class="grid">
+
+```
+<div class="img-wrapper">
+  <img src="images/onderzoek/onderzoek1.jpg" alt="Onderzoek 1">
+</div>
+
+<div class="img-wrapper">
+  <img src="images/onderzoek/onderzoek2.jpg" alt="Onderzoek 2">
+</div>
+
+<div class="img-wrapper">
+  <img src="images/onderzoek/onderzoek3.jpg" alt="Onderzoek 3">
+</div>
+
+<div class="img-wrapper">
+  <img src="images/onderzoek/onderzoek4.jpg" alt="Onderzoek 4">
+</div>
+```
+
+  </main>
+
+  <script>
+    function Showbio() {
+      document.getElementById("bio-container").classList.toggle("show2");
+    }
+
+    function Showlist() {
+      document.getElementById("worklist").classList.toggle("show");
+    }
+  </script>
+
+</body>
+</html>
