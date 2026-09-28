@@ -943,7 +943,7 @@ input::placeholder{
 
 .sketchbook {
   position: fixed;
-  width: 1000px;
+  width: 750px;
   max-width: 80vw;
 
   left: 50%;
