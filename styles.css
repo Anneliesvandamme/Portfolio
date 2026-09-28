@@ -933,6 +933,147 @@ input::placeholder{
   margin: 1rem auto;
 }
   }
+
+
+.sketchbook-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.sketchbook {
+  position: fixed;
+  width: 280px;
+  opacity: 0;
+}
+
+.sketchbook img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Eerste schets */
+.sketchbook-1 {
+  left: 10vw;
+  top: 20vh;
+  transform: rotate(-7deg);
+
+  animation: sketch1 linear both;
+  animation-timeline: scroll(root);
+}
+
+/* Tweede schets */
+.sketchbook-2 {
+  right: 12vw;
+  top: 35vh;
+  transform: rotate(5deg);
+
+  animation: sketch2 linear both;
+  animation-timeline: scroll(root);
+}
+
+/* Derde schets */
+.sketchbook-3 {
+  left: 55vw;
+  top: 15vh;
+  transform: rotate(-3deg);
+
+  animation: sketch3 linear both;
+  animation-timeline: scroll(root);
+}
+
+/* Vierde schets */
+.sketchbook-4 {
+  left: 15vw;
+  top: 50vh;
+  transform: rotate(8deg);
+
+  animation: sketch4 linear both;
+  animation-timeline: scroll(root);
+}
+
+/* Vijfde schets */
+.sketchbook-5 {
+  right: 8vw;
+  top: 20vh;
+  transform: rotate(-6deg);
+
+  animation: sketch5 linear both;
+  animation-timeline: scroll(root);
+}
+
+
+@keyframes sketch1 {
+  0%, 10% {
+    opacity: 0;
+  }
+
+  15%, 25% {
+    opacity: 1;
+  }
+
+  30%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sketch2 {
+  0%, 25% {
+    opacity: 0;
+  }
+
+  30%, 40% {
+    opacity: 1;
+  }
+
+  45%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sketch3 {
+  0%, 40% {
+    opacity: 0;
+  }
+
+  45%, 55% {
+    opacity: 1;
+  }
+
+  60%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sketch4 {
+  0%, 55% {
+    opacity: 0;
+  }
+
+  60%, 70% {
+    opacity: 1;
+  }
+
+  75%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sketch5 {
+  0%, 70% {
+    opacity: 0;
+  }
+
+  75%, 85% {
+    opacity: 1;
+  }
+
+  90%, 100% {
+    opacity: 0;
+  }
+}
  
   
 
