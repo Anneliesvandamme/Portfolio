@@ -35,15 +35,7 @@
 
   </div>
 
-</div>
 
-  <div id="scroll-popup">
-  <div id="scroll-popup-box">
-    <button id="scroll-popup-close" onclick="closeScrollPopup()">×</button>
-
-    <img id="scroll-popup-image" src="" alt="Onderzoek">
-
-  </div>
 </div>
 
 
@@ -292,23 +284,17 @@ dynamiek die zich voor je afspeelt en een keuze te maken: blijven kijken of wegl
   <img src="images/onderzoek/onderzoek45.jpg" alt="Onderzoek 45">
 </div>
   </main>
+  
+<script>
+function closeOnderzoekPopup() {
+  document.getElementById("onderzoek-popup").style.display = "none";
+}
 
-  <script>
-
-  function Showbio() {
-    document.getElementById("bio-container").classList.toggle("show2");
-  }
-
-
-  function Showlist() {
-    const worklist = document.getElementById("worklist");
-
-    if (worklist) {
-      worklist.classList.toggle("show");
-    }
-  }
-
-    </script>
-  <script src="script.js"></script>
+function Showbio() {
+  document.getElementById("bio-container").classList.toggle("show2");
+}
+</script>
+  
+  
   </body>
 </html>
