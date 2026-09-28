@@ -472,6 +472,14 @@ input::placeholder{
   text-decoration: underline;
 }
 
+#onderzoek-logo {
+  display: block;
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+}
+
 @media (max-width: 700px) {
   #onderzoek-popup-box {
     width: 70vw;
@@ -493,58 +501,7 @@ input::placeholder{
   height: auto;
   margin: 1rem auto;
 }
-  #scroll-popup {
-  position: fixed;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 3000;
-}
-
-#scroll-popup-box {
-  position: relative;
-  width: 55vw;
-  max-width: 800px;
-  max-height: 85vh;
-  padding: 1rem;
-  box-sizing: border-box;
-  background: white;
-}
-
-#scroll-popup-image {
-  display: block;
-  width: 100%;
-  max-height: 80vh;
-  object-fit: contain;
-}
-
-#scroll-popup-close {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  z-index: 2;
-
-  background: white;
-  border: none;
-  font-size: 30px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-#scroll-popup-close:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 700px) {
-  #scroll-popup-box {
-    width: 85vw;
-    padding: 0.5rem;
-  }
-
-  #scroll-popup-close {
-    font-size: 26px;
+ 
   }
 }
 }
