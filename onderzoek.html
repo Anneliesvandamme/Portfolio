@@ -572,6 +572,32 @@ document.addEventListener("DOMContentLoaded", function () {
 function Showbio() {
   document.getElementById("bio-container").classList.toggle("show2");
 }
+
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const popup = document.getElementById("onderzoek-popup");
+  const enterButton = document.getElementById("onderzoek-enter-btn");
+
+  enterButton.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+
+  // Onderzoeksafbeeldingen willekeurig door elkaar zetten
+  const grid = document.getElementById("onderzoek-grid");
+  const images = Array.from(grid.children);
+
+  images.sort(() => Math.random() - 0.5);
+
+  images.forEach(image => {
+    grid.appendChild(image);
+  });
+
+});
+
+function Showbio() {
+  document.getElementById("bio-container").classList.toggle("show2");
+}
 </script>
   
   
