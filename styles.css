@@ -905,9 +905,9 @@ input::placeholder{
 
 #onderzoek-logo {
   display: block;
-  width: 200px;
+  width: auto;
   max-width: 100%;
-  height: auto;
+  height: 160px;
   margin: 1rem auto;
 }
 
