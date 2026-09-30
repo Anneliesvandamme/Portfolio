@@ -10,6 +10,15 @@ const ageGate = document.getElementById("age-gate");
 const ageCheck = document.getElementById("age-check");
 const enterBtn = document.getElementById("enter-btn");
 
+const onderzoekPopup = document.getElementById("onderzoek-popup");
+const onderzoekEnterBtn = document.getElementById("onderzoek-enter-btn");
+
+if (onderzoekEnterBtn) {
+  onderzoekEnterBtn.addEventListener("click", () => {
+    onderzoekPopup.style.display = "none";
+  });
+}
+
 if (localStorage.getItem("ageVerified")) {
   ageGate.style.display = "flex";
 }
