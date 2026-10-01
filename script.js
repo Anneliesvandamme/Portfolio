@@ -6,126 +6,139 @@ function shuffle(array) {
   return array;
 }
 
+const storage = {
+  get(key) {
+    try { return localStorage.getItem(key); } catch { return null; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, value); } catch { }
+  }
+};
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+function preload(src) {
+  return new Promise(resolve => {
+    const probe = new Image();
+    probe.onload = () => resolve(true);
+    probe.onerror = () => resolve(false);
+    probe.src = src;
+  });
+}
+
 const ageGate = document.getElementById("age-gate");
 const ageCheck = document.getElementById("age-check");
 const enterBtn = document.getElementById("enter-btn");
 
+if (ageGate) {
+  ageGate.style.display = storage.get("ageVerified") ? "none" : "flex";
+}
+
+if (enterBtn) {
+  enterBtn.addEventListener("click", () => {
+    if (ageCheck && ageCheck.checked) {
+      storage.set("ageVerified", "true");
+      ageGate.style.display = "none";
+    } else {
+      alert("You must confirm your age before proceeding.");
+    }
+  });
+}
+
 const onderzoekPopup = document.getElementById("onderzoek-popup");
 const onderzoekEnterBtn = document.getElementById("onderzoek-enter-btn");
 
-if (onderzoekEnterBtn) {
+if (onderzoekPopup && onderzoekEnterBtn) {
   onderzoekEnterBtn.addEventListener("click", () => {
     onderzoekPopup.style.display = "none";
   });
 }
 
-if (localStorage.getItem("ageVerified")) {
-  ageGate.style.display = "flex";
+function withVariants(items, type) {
+  return items.map(f => ({
+    ...f,
+    type,
+    thumb: f.thumb || f.src.replace(`/${type}/`, `/${type}/thumb/`),
+    low: f.low || f.src.replace(`/${type}/`, `/${type}/low/`)
+  }));
 }
-
-enterBtn.addEventListener("click", () => {
-  if (ageCheck.checked) {
-    localStorage.setItem("ageVerified", "true");
-    ageGate.style.display = "none";
-  } else {
-    alert("You must confirm your age before proceeding.");
-  }
-});
 
 async function loadImages() {
   try {
     const res = await fetch("data/public/manifest.json");
     const data = await res.json();
 
-    const works = data.works.map(f => ({
-      ...f,
-      type: "works",
-      thumb: f.thumb || f.src.replace("/works/", "/works/thumb/"),
-      low: f.low || f.src.replace("/works/", "/works/low/")
-    }));
+    const images = shuffle([
+      ...withVariants(data.works, "works"),
+      ...withVariants(data.sources, "sources")
+    ]);
 
-    const sources = data.sources.map(f => ({
-      ...f,
-      type: "sources",
-      thumb: f.thumb || f.src.replace("/sources/", "/sources/thumb/"),
-      low: f.low || f.src.replace("/sources/", "/sources/low/")
-    }));
-
-    const images = shuffle([...works, ...sources]);
     renderImages(images);
     return images;
   } catch (err) {
     console.error("Error loading manifest.json", err);
+    return [];
   }
 }
 
-function fadeToBetterQuality(img, nextSrc) {
-  const highImg = new Image();
-  highImg.src = nextSrc;
+async function upgradeImage(img) {
+  for (const src of [img.dataset.low, img.dataset.full]) {
+    if (!src) continue;
+    if (!(await preload(src))) return;
 
-  highImg.onload = () => {
     img.classList.add("fade");
-    setTimeout(() => {
-      img.src = nextSrc;
-      img.classList.remove("fade");
-    }, 150);
-  };
+    await wait(150);
+    img.src = src;
+    img.classList.remove("fade");
+  }
 }
 
+function createProgressiveImage(imgData) {
+  const img = document.createElement("img");
+  img.dataset.low = imgData.low;
+  img.dataset.full = imgData.src;
+
+  img.addEventListener("load", () => upgradeImage(img), { once: true });
+  img.src = imgData.thumb;
+
+  return img;
+}
+
+const grid = document.getElementById("grid");
+
 function renderImages(images) {
-  const grid = document.getElementById("grid");
   grid.innerHTML = "";
 
   images.forEach(imgData => {
     const wrapper = document.createElement("div");
     wrapper.className = `img-wrapper ${imgData.type}`;
 
-    const img = document.createElement("img");
-    img.src = imgData.thumb;
-    img.dataset.low = imgData.low;
-    img.dataset.full = imgData.src;
+    const img = createProgressiveImage(imgData);
     img.alt = imgData.title || "Untitled";
-
-    if (imgData.original) {
-      img.dataset.original = imgData.original;
-    }
-
-    img.onload = () => fadeToBetterQuality(img, img.dataset.low);
-
-    img.addEventListener("transitionend", () => {
-      fadeToBetterQuality(img, img.dataset.full);
-    }, { once: true });
+    if (imgData.original) img.dataset.original = imgData.original;
 
     const caption = document.createElement("p");
     caption.textContent = imgData.title || "Untitled";
 
-    wrapper.appendChild(img);
-    wrapper.appendChild(caption);
+    wrapper.append(img, caption);
     grid.appendChild(wrapper);
   });
-
-  setupImageClick();
 }
 
-function setupImageClick() {
-  const grid = document.getElementById("grid");
+grid.addEventListener("click", e => {
+  const img = e.target.closest("img");
+  if (!img) return;
 
-  grid.addEventListener("click", e => {
-    const img = e.target.closest("img");
-    if (!img) return;
-
-    const low = img.dataset.low;
-    const full = img.dataset.full;
-    const captionText = img.alt || "Untitled";
-    const original = img.dataset.original || null;
-
-    showLightbox(low, full, captionText, original);
-  });
-}
+  showLightbox(
+    img.dataset.low,
+    img.dataset.full,
+    img.alt || "Untitled",
+    img.dataset.original || null
+  );
+});
 
 function showLightbox(lowSrc, fullSrc, captionText, originalSrc = null) {
-  const existing = document.getElementById("lightbox");
-  if (existing) existing.remove();
+  document.getElementById("lightbox")?.remove();
 
   const overlay = document.createElement("div");
   overlay.id = "lightbox";
@@ -134,23 +147,14 @@ function showLightbox(lowSrc, fullSrc, captionText, originalSrc = null) {
   img.src = fullSrc;
   img.alt = captionText;
   img.className = "lightbox-img";
-  img.style.backgroundImage = `url(${lowSrc})`;
+  img.style.backgroundImage = `url(${originalSrc ? fullSrc : lowSrc})`;
 
   const caption = document.createElement("p");
   caption.textContent = captionText;
 
-  const contentnotice = document.createElement("em");
-  contentnotice.setAttribute('style', 'white-space: pre;');
-  contentnotice.textContent = "KENNISGEVING OVER DE INHOUD: VERWIJDERD MATERIAAL \n";
-  contentnotice.textContent += "Deze afbeelding is verwijderd vanwege gevoelige inhoud";
-
-  overlay.appendChild(img);
-  overlay.appendChild(caption);
-  overlay.appendChild(contentnotice);
+  overlay.append(img, caption);
 
   if (originalSrc) {
-    overlay.removeChild(contentnotice);
-    img.style.backgroundImage = `url(${fullSrc})`;
     const originalLink = document.createElement("a");
     originalLink.href = originalSrc;
     originalLink.target = "_blank";
@@ -158,62 +162,62 @@ function showLightbox(lowSrc, fullSrc, captionText, originalSrc = null) {
     originalLink.textContent = "original";
     originalLink.className = "lightbox-original-link";
     overlay.appendChild(originalLink);
+  } else {
+    const notice = document.createElement("em");
+    notice.style.whiteSpace = "pre";
+    notice.textContent =
+      "KENNISGEVING OVER DE INHOUD: VERWIJDERD MATERIAAL \n" +
+      "Deze afbeelding is verwijderd vanwege gevoelige inhoud";
+    overlay.appendChild(notice);
   }
 
+  const close = () => {
+    overlay.remove();
+    document.removeEventListener("keydown", onKey);
+  };
+  const onKey = e => { if (e.key === "Escape") close(); };
+
+  overlay.addEventListener("click", close);
+  document.addEventListener("keydown", onKey);
   document.body.appendChild(overlay);
-
-  overlay.addEventListener("click", () => overlay.remove());
-  document.addEventListener("keydown", function escHandler(e) {
-    if (e.key === "Escape") {
-      overlay.remove();
-      document.removeEventListener("keydown", escHandler);
-    }
-  });
-}
-
-
-function setupPopups(images) {
-  window.addEventListener("scroll", () => {
-    if (Math.random() < 0.05) {
-      const img = images[Math.floor(Math.random() * images.length)];
-      spawnPopup(img);
-    }
-  });
 }
 
 function spawnPopup(imgData) {
   const container = document.getElementById("popup-container");
+  if (!container) return;
+
   const popup = document.createElement("div");
   popup.className = "popup";
-
-  const img = document.createElement("img");
-  img.src = imgData.thumb;
-  img.dataset.low = imgData.low;
-  img.dataset.full = imgData.src;
-
-  img.onload = () => fadeToBetterQuality(img, img.dataset.low);
-
-  img.addEventListener("transitionend", () => {
-    fadeToBetterQuality(img, img.dataset.full);
-  }, { once: true });
 
   const caption = document.createElement("a");
   caption.textContent = imgData.title || "Untitled";
 
-  popup.appendChild(caption);
-  popup.appendChild(img);
+  const img = createProgressiveImage(imgData);
+
+  popup.append(caption, img);
 
   const w = 200;
   const h = 220;
-
-  popup.style.left = Math.random() * (window.innerWidth - w) + "px";
-  popup.style.top = Math.random() * (window.innerHeight - h) + "px";
-
-  container.appendChild(popup);
+  popup.style.left = Math.random() * Math.max(0, window.innerWidth - w) + "px";
+  popup.style.top = Math.random() * Math.max(0, window.innerHeight - h) + "px";
 
   popup.addEventListener("click", () => popup.remove());
+  container.appendChild(popup);
+}
+
+function setupPopups(images) {
+  if (!images.length) return;
+
+  window.addEventListener("scroll", () => {
+    if (Math.random() < 0.05) {
+      spawnPopup(images[Math.floor(Math.random() * images.length)]);
+    }
+  });
+
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape") popup.remove();
+    if (e.key === "Escape") {
+      document.querySelectorAll(".popup").forEach(p => p.remove());
+    }
   });
 }
 
@@ -228,6 +232,10 @@ function applyFilters() {
   });
 }
 
+if (searchInput) {
+  searchInput.addEventListener("input", applyFilters);
+}
+
 function Showlist() {
   document.getElementById("worklist").classList.toggle("show");
 }
@@ -236,13 +244,4 @@ function Showbio() {
   document.getElementById("bio-container").classList.toggle("show2");
 }
 
-searchInput.addEventListener("input", applyFilters);
-
-loadImages().then(() => {
-  fetch("data/public/manifest.json").then(r => r.json()).then(data => {
-    const works = data.works.map(f => ({ ...f, type: "works" }));
-    const sources = data.sources.map(f => ({ ...f, type: "sources" }));
-    window.images = [...works, ...sources];
-    setupPopups(window.images);
-  });
-});
+loadImages().then(setupPopups);
