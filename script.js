@@ -246,12 +246,3 @@ loadImages().then(() => {
     setupPopups(window.images);
   });
 });
-
-const onderzoekEnterBtn = document.getElementById("onderzoek-enter-btn");
-const onderzoekPopup = document.getElementById("onderzoek-popup");
-
-if (onderzoekEnterBtn && onderzoekPopup) {
-  onderzoekEnterBtn.onclick = function () {
-    onderzoekPopup.style.display = "none";
-  };
-}
