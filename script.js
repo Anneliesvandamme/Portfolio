@@ -245,3 +245,23 @@ function Showbio() {
 }
 
 loadImages().then(setupPopups);
+
+const sketchbookLayer = document.querySelector(".sketchbook-layer");
+
+const aantalSchetsen = 12;
+
+for (let i = 15; i <= aantalSchetsen; i++) {
+  const sketch = document.createElement("div");
+
+  const classes = ["sketchbook-1", "sketchbook-2", "sketchbook-3", "sketchbook-4", "sketchbook-5"];
+  const randomClass = classes[Math.floor(Math.random() * classes.length)];
+
+  sketch.className = `sketchbook ${randomClass}`;
+
+  const img = document.createElement("img");
+  img.src = `images/schetsboek/schets${i}.jpg`;
+  img.alt = "Schetsboek";
+
+  sketch.appendChild(img);
+  sketchbookLayer.appendChild(sketch);
+}
